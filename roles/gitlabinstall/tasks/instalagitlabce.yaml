@@ -1,0 +1,10 @@
+
+- name: instala gitlab-ce  (https://about.gitlab.com/installation/#ubuntu, trocando URL para "-ce")  
+  package:
+    name: 
+      - gitlab-ce
+    state: present
+    update_cache: yes
+
+
+  

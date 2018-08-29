@@ -1,0 +1,13 @@
+---
+# tasks file for gitlabinstall
+
+
+- name: instala dependencias
+  include: instaladep.yaml
+
+- name: instala repositorio 
+  include: instalarepo.yaml
+
+
+- name: instala gitlab CE
+  include: instalagitlabce.yaml

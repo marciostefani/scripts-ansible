@@ -1,0 +1,18 @@
+
+- name: adicionando repositorio
+  shell: "curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash"
+
+
+- name: Install and configure the necessary dependencies
+  package:
+    name: 
+      - curl 
+      - openssh-server
+      - ca-certificates
+      - postfix
+      - gitlab-ce
+    state: present
+    update_cache: yes
+
+
+  

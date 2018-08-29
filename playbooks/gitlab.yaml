@@ -1,0 +1,6 @@
+- name: instalacao do gitlab na maquina devops 
+  hosts: devops.dexter.com.br
+  roles: 
+    - gitlabinstall
+
+    

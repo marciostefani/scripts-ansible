@@ -1,0 +1,8 @@
+
+- name: adicionando repositorio (https://about.gitlab.com/installation/#ubuntu)
+  shell: "curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash"
+
+
+
+
+  

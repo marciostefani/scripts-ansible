@@ -1,0 +1,13 @@
+
+- name: Install and configure the necessary dependencies (https://about.gitlab.com/installation/#ubuntu)
+  package:
+    name: 
+      - curl 
+      - openssh-server
+      - ca-certificates
+      - postfix
+    state: present
+    update_cache: yes
+
+
+  
