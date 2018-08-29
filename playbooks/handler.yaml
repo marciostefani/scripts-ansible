@@ -1,0 +1,36 @@
+- name:  configurando servidor web
+  hosts: all
+  tasks: 
+   - name: instalando apache
+     package: 
+      name: apache2 
+     when: ansible_os_family == "Debian" 
+
+   - name: instalando apache 
+     package: 
+      name: httpd
+     when: ansible_os_family == "RedHat"
+
+   - name: criando index para o mundo
+     template: 
+       src: index.html 
+       dest: /var/www/html/index.html
+     notify:  # abaixo seguem apenas nomes para colocar no handler. Estes nome podem ter espacos 
+       - restart apache2 debian     # sao apenas labels
+       - restart httpd centos       # sao apenas labels
+
+
+  handlers: 
+    - name: restart apache2 debian
+      service: 
+        name: apache2
+        state: restarted
+      when: ansible_os_family == "Debian" 
+
+   
+    - name: restart httpd centos
+      service: 
+        name: httpd
+        state: restarted
+      when: ansible_os_family == "RedHat" 
+   

@@ -1,0 +1,13 @@
+- name: utilizando condicao
+  hosts: all
+  tasks: 
+   - name: instalando apache
+     package: 
+      name: apache2 
+     when: ansible_os_family == "Debian" 
+
+   - name: instalando apache 
+     package: 
+      name: httpd
+     when: ansible_os_family == "RedHat"
+

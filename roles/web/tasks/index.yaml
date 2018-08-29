@@ -1,0 +1,7 @@
+- name: criando index para o mundo
+  template: 
+    src:  templates/index.html.j2 
+    dest: /var/www/html/index.html
+  notify:  # abaixo seguem apenas nomes para colocar no handler. Estes nome podem ter espacos 
+    - restart_httpd_redhat
+

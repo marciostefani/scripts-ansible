@@ -1,0 +1,18 @@
+---
+# tasks file for web
+
+- name: adicionando pacotes padrao no debian
+  include: packageDeb.yaml
+  when: ansible_os_family == "Debian"
+
+- name: instalando pacotes padroes no centos
+  include: packageRhel.yaml 
+  when: ansible_os_family == "RedHat"
+
+- name: copiando arquivo index.html 
+  include: index.yaml 
+  
+   
+
+
+

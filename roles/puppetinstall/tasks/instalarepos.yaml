@@ -1,0 +1,13 @@
+- name: instalando o repositorio centos (nao somente copiar o arquivo. Ele instala!) 
+  yum:
+    name: https://yum.puppet.com/puppet5/puppet5-release-el-7.noarch.rpm 
+  when: ansible_os_family == "RedHat"
+
+- name: instalando o repostiorio do ubuntu 
+  apt: 
+    deb: https://apt.puppetlabs.com/puppet5-release-xenial.deb
+    state: present
+    update_cache: yes
+  when: ansible_os_family == "Debian"  
+
+

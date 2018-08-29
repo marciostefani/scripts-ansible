@@ -1,0 +1,5 @@
+- name: aplicando configuracaoes padroes para a infra
+  hosts: all
+  roles: 
+    - conf
+    

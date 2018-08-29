@@ -1,0 +1,5 @@
+- name: configurando servidores LAMP 
+  hosts: all
+  roles: 
+    - puppetinstall 
+    

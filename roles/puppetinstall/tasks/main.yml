@@ -1,0 +1,12 @@
+---
+# tasks file for puppetinstall
+- name: instala repositorios
+  include: instalarepos.yaml 
+
+- name: instalando o puppet agent
+  include: instalaagent.yaml 
+
+- name: instalando puppet server
+  include: instalaserver.yaml
+  when: ansible_hostname == "devops" 
+

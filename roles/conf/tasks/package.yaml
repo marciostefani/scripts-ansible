@@ -1,0 +1,14 @@
+- name: instalando pacotes
+  package:
+    name: 
+      - figlet 
+      - vim
+      - joe
+      - sysstat
+      - htop 
+      - cowsay 
+  state: present
+  update_cache: yes 
+
+
+

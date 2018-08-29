@@ -1,0 +1,12 @@
+- name: instalando pacotes no RHEL
+  package:
+    name: 
+      - httpd
+      - php
+      - mariadb-server
+  state: present
+
+
+  # handler para dar stop no firewalld
+  notify:
+    - configurando_firewalld

@@ -1,0 +1,33 @@
+- name: instalar pacotes cowsay, vim, htop, epel-release
+  hosts: all
+  tasks:
+   - name: instalar pacotes
+     package:
+      name:
+       - vim
+       - htop
+       - sl
+       - cowsay
+    
+   - name: adicionando usuarios
+     user:
+      name: "{{item}}"
+      shell: '/bin/bash'
+      password: '$1$32GrEbdi$BIPEIRV.QHqSCsWLr921k0'
+      shell: '/bin/bash'
+     with_items: 
+      - devops
+      - developer
+      - marciostefani
+
+
+- name: instalar epel-release
+  hosts:  "{{nomehost}}"
+  vars: 
+   - nomehost: automation
+  tasks:
+   - name: instalando epel-release
+     package:
+      name: epel-release
+      state: present
+

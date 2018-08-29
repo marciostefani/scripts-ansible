@@ -1,0 +1,7 @@
+- name: configurando servidores LAMP 
+  hosts: '{{listahosts}}'
+  vars:
+    - listahosts: all 
+  roles: 
+    - web
+    

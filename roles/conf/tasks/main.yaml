@@ -1,0 +1,12 @@
+# tasks file para  role "conf"
+
+- name: adicionando usuarios padroes
+  include: user.yaml
+
+- name: instalando pacotes padroes
+  include: package.yaml
+
+- name: criando arquivos padroes
+  include: files.yaml 
+
+
