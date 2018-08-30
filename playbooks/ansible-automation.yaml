@@ -4,8 +4,8 @@
    
     - name: instalando pacote ansibles
       package:
-        name:  ansible-2.6.3 
-        state: present
+        name:  ansible 
+        state: latest 
 
     - name: copiando chaves
       copy:
