@@ -1,0 +1,13 @@
+- name: instalar nginx
+  hosts: "{{listahosts}}" 
+  vars:
+    - listahosts: all
+  tasks: 
+    - name: instalar nginx
+      package:
+        name: nginx
+        state: present 
+
+
+
+

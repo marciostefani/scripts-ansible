@@ -1,0 +1,21 @@
+- name: instalar nginx
+  hosts: docker
+  tasks: 
+    - name: parando apache
+      service:
+        name: apache2
+        state: stopped
+
+    - name: removendo o apache2
+      package:
+        name: apache2
+        state: absent
+
+    - name: instalar nginx
+      package:
+        name: nginx
+        state: present 
+
+
+
+
