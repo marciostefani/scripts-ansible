@@ -1,0 +1,24 @@
+- name: instalando rundeck 
+  hosts: automation.dexter.com.br
+  tasks: 
+
+    - name: instalando o repositorio
+      yum:
+        name: java-1.8.0
+        name: https://repo.rundeck.org/latest.rpm
+
+
+    - name: instalando rundeck 
+      package:
+        name: rundeck 
+        state: present 
+
+# poderia chamar deste jeito: 
+#    - name: instalando o ansible
+#      include: ansible-automation.yaml
+
+
+          
+          
+           
+

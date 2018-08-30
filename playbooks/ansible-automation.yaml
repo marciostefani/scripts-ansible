@@ -1,0 +1,25 @@
+- name: instalando ansible na maquina 
+  hosts: automation.dexter.com.br
+  tasks: 
+   
+    - name: instalando pacote ansibles
+      package:
+        name:  ansible-2.6.3 
+        state: present
+
+    - name: copiando chaves
+      copy:
+        src: "{{item.src}}"
+        dest: "{{item.dest}}"
+      with_items:
+        - { src: /etc/keys, dest: /etc/ }
+        - { src: /etc/ansible/hosts , dest: /etc/ansible/}
+        - { src: /etc/ansible/ansible.cfg, dest: /etc/ansible/ } 
+  
+
+
+
+
+          
+           
+
