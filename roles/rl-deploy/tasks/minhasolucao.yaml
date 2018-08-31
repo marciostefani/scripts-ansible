@@ -11,23 +11,73 @@
 
 
 
-- name: testando container green
-  shell: echo "eu sou green" > /tmp/quemevoce
+- name: obtendo ip green 
+  shell: "docker exec container_green hostname -I" 
   when: resultado.rc  == 0
+  register: ipgreen
 
 
-- name: testando se eh container blue 
-  shell: echo "eu sou blue " > /tmp/quemevoce
+
+- name:  obtendo ip blue
+  shell: "docker exec container_blue hostname -I"
   when: resultado.rc  == 1
+  register: ipblue
 
 
 
-- name: salvando ip address do container green 
-  shell: "docker exec container_green hostname -I"
-  register: ip_container_green
-  
+# deploy-bluegreen  é o nome do projeto jenkins
+- name: copiando a index do green 
+  copy:
+    src:  /var/lib/jenkins/workspace/deploy-bluegreen/index.html 
+    dest: /srv/vol_green/index.html
+  when: resultado.rc == 0  
 
-- name:  salvando ip do container green 
-  shell: echo '{{ip_container_green}}' > /tmp/ipcontainergreen
+
+- name: copiando a index do blue 
+  copy:
+    src:  /var/lib/jenkins/workspace/deploy-bluegreen/index.html 
+    dest: /srv/vol_blue/index.html
+  when: resultado.rc == 1 
+
+
+
+- name: criando o vhost do green 
+  template: 
+    src: templates/vhost_green 
+    dest: /etc/nginx/sites-enabled/green.conf
+  when: resultado.rc == 0 
+
+
+- name: criando o vhost do blue 
+  template: 
+    src: templates/vhost_blue
+    dest: /etc/nginx/sites-enabled/blue.conf
+  when: resultado.rc == 1
+
+
+
+
+- name: apagando o arquivo vhosts do  ambiente green (somente quando ja estiver no ar!!) 
+  file: 
+    path: /etc/nginx/sites-enabled/green.conf
+    state: absent
+  when: vhost.stat.exists == True
+
+
+- name: apagando o arquivo vhost do  ambiente blue  (somente quando blue estiver no ar) 
+  file: 
+    path: /etc/nginx/sites-enabled/blue.conf
+    state: absent
+  when: vhost.stat.exists == False
+
+
+- name: realizando o restart do nginx (poderia usar um handler que faz restart quando apagar o arquivo) 
+  service: 
+    name: nginx
+    state: restarted 
+
+
+
+
 
 
