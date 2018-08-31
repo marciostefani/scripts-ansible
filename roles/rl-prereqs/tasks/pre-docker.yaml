@@ -1,0 +1,30 @@
+- name: instalando o python-pip
+  package: 
+    name:
+     - python-pip
+    state: present
+
+- name: instalando o docker-ce e garantir que estah executando
+  package: 
+    name:
+     - docker-ce
+    update_cache: yes
+    state: present 
+
+
+
+- name: instalando o docker-py para gerenciar o docker com ansible
+  pip: 
+    name: docker-py
+
+
+- name: garante servico xecutando
+  service: 
+    name: docker
+    state: started 
+
+
+    
+
+
+    

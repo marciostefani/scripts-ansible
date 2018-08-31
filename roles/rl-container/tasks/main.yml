@@ -1,0 +1,32 @@
+---
+# tasks file for rl-container
+#
+
+- name: cria volumes estaticos para containers blue e green 
+  file: 
+    path: "{{item}}"
+    state: directory 
+  with_items: 
+    - /srv/vol_blue
+    - /srv/vol_green 
+
+
+- name: criando o container green
+  docker_container:
+    name:  container_green 
+    image: httpd
+    state: started
+    volumes: 
+     - /srv/vol_green:/usr/local/apache2/htdocs
+
+
+
+- name: criando o container blue 
+  docker_container:
+    name:  container_blue
+    image: httpd
+    state: started
+    volumes: 
+     - /srv/vol_blue:/usr/local/apache2/htdocs
+
+

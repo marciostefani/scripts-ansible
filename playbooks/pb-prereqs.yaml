@@ -1,0 +1,6 @@
+- name:  pre-requisitos para o blue green deploy 
+  hosts: docker.dexter.com.br
+  roles: 
+    - rl-prereqs 
+
+    

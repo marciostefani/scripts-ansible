@@ -1,0 +1,6 @@
+- name:  criar containers para blue green deploy 
+  hosts: docker.dexter.com.br
+  roles: 
+    - rl-container
+
+    

@@ -1,0 +1,33 @@
+---
+# tasks file for rl-deploy
+#
+#
+- name: detectando ip address do container green
+#  shell: docker exec container_green hostname -I
+  shell: "grep $(/usr/bin/docker exec container_green /bin/hostname -I) /etc/nginx/sites-enabled/container_ativo.conf"
+# se resultado do comando acima == 0 significa que achou hostname do containergreen dentro do arquivo conf do nginx ativo 
+  register: resultado 
+  ignore_errors: yes 
+
+
+
+- name: testando container green
+  shell: echo "eu sou green" > /tmp/quemevoce
+  when: resultado.rc  == 0
+
+
+- name: testando se eh container blue 
+  shell: echo "eu sou blue " > /tmp/quemevoce
+  when: resultado.rc  == 1
+
+
+
+- name: salvando ip address do container green 
+  shell: "docker exec container_green hostname -I"
+  register: ip_container_green
+  
+
+- name:  salvando ip do container green 
+  shell: echo '{{ip_container_green}}' > /tmp/ipcontainergreen
+
+

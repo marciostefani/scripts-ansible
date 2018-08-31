@@ -1,0 +1,4 @@
+- name:  deploy da aplicacao do blue green deploy
+  hosts: docker.dexter.com.br
+  roles: 
+    - rl-deploy 

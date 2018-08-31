@@ -1,0 +1,9 @@
+
+
+#- name:  solucao minha
+#  include: minhasolucao.yaml 
+
+- name:  solucao do professor
+  include: solucaodoprofessor.yaml 
+
+
